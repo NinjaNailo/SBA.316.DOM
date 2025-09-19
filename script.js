@@ -167,5 +167,16 @@ listEl.addEventListener("dblclick", (e) => {
   });
 });
 
-load();
-validate();
+function rowClickHandler(e) {
+  const row = e.target.closest(".list-item");
+  if (!row) return;
+  const id = row.dataset.id;
+  const idx = lineup.findIndex((e) => e.id === id);
+  if (idx === -1) return;
+  function init(){
+load()
+renderList()
+validate()
+  }
+document.addEventListener("DOMContentLoaded", init);
+}

@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Talent Show Signup</title>
    <style>
-    body {
-      font-family: Arial, sans-serif; margin: 16px}
-      .list-item { margin-bottom: 8px; }
-      .error { color: red; }
-      .margin-top-12 { margin-top: 12px;
-    } 
+html, body { height: 100% }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://wallpaperaccess.com/full/2794785.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; /* remove this on iOS if it feels jumpy */
+    color: rgb(10, 16, 4); /* keeps text readable on a dark photo */
+  }
+
+  /* optional soft dark overlay for better contrast */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    pointer-events: none;
+  }
    </style>
   </head>
   <body>
@@ -24,9 +38,10 @@
         minlength="3"
         pattern="[A-Za-z0-9 ]{2,30}"
         title="Name should be at least 3 characters long and contain only letters, numbers, and spaces."
+        aria-describedby="nameError"
       />
       <input
-        id=""emailInput"
+        id="emailInput"
         type="email"
         name="email"
         placeholder="Your email"
@@ -48,16 +63,40 @@
       </label>
       <button id="submitButton" type="submit">Sign Up</button>
       <div id="nameError" class="error"></div>
-    <div class="margin-top-12">
-    <div class="margin-top-12">
+    
+    <div style="margin-top: 12px;">
       <strong>Lineup</strong>
       <div id="list"></div>
     </div>
-    <div class="margin-top-12">
+    <div style="margin-top: 12px;">
       <strong>Statistics</strong>
-      <div>Total acts <span id="countAll"></span></div>
-      <div>Checked in <span id="countCheckedIn"></span></div>
-      <div>Next performer <span id="nextUp">none yet</span></div>
+
+      <div class="stats-row">
+        <label for="statTotal">
+          <input id="statTotal" type="checkbox"/>
+          Checked In
+        </label>
+        <span id="countAll"></span>
+        </div>
+        <div class="stats-row">
+          <label for="statCheckedIn">
+            <input id="statCheckedIn" type="checkbox"/>
+            Total Signed Up   
+          </label>
+          <div class="stats-row">
+            <label for="statNotCheckedIn">
+              <input id="statNotCheckedIn" type="checkbox"/>
+              Not Checked In
+            </label>
+          </div>
+          <span id="countCheckedIn"></span>
+          <div class="stats-row">
+            <label for="statNext">
+              <input id="statNext" type="checkbox"/>
+              Next Performer
+            </label>
+            <span id="nextUp"></span>
+          </div>
       </div>
       <template id="rowTemplate">
         <div class="row">
